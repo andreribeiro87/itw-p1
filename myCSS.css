@@ -11,22 +11,23 @@
     border-color: #ccc;
 }
 
-    .btn-default:focus {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #8c8c8c;
-    }
+.btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
 
-    .btn-default:active,
-    .btn-default:hover {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #adadad;
-    }
+.btn-default:active,
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
 
 /* button-xs
 ---------------------------- */
-.btn-group-xs > .btn, .btn-xs {
+.btn-group-xs>.btn,
+.btn-xs {
     padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
@@ -35,4 +36,12 @@
 
 li.page-item a {
     font-size: 0.85rem;
+}
+
+.pixa {
+    -webkit-clip-path: circle(75px at 50% 50%);
+    clip-path: circle(75px at 50% 50%);
+    background-color: none;
+    height: 1000px;
+    min-width: 100px;
 }

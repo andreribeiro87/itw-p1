@@ -3,15 +3,15 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/games');
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Athletes');
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
     self.displayName = 'Olympic Games editions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(2);
-    self.totalRecords = ko.observable(50);
+    self.pagesize = ko.observable(5);
+    self.totalRecords = ko.observable();
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
     self.previousPage = ko.computed(function () {
