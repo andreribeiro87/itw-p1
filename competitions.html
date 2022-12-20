@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -50,8 +50,8 @@
             </div>
         </div>
     </nav>
-    <!-- Working Area -->
-    <div class="container">
+   <!-- Working Area -->
+   <div class="container">
         <div class="border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
         </div>
@@ -59,15 +59,15 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'countries: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './athletes.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                            data-bind="attr: { href: './countries.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                     <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './athletes.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                            data-bind="attr: { href: './countries.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
@@ -76,15 +76,15 @@
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
                     <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './athletes.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                            data-bind="attr: { href: './countries.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
                     </li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                     <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './athletes.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                            data-bind="attr: { href: './countries.html?page=' + nextPage(), rel:'next' }">→</a></li>
                     <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './athletes.html?page=' + totalPages() }">⇥</a></li>
+                            data-bind="attr: { href: './countries.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -107,43 +107,23 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">City Name</th>
-                    <th scope="col">Country Name</th>
+                    
+                    <th scope="col">Modality</th>
+                    <th scope="col">Photo</th>
+
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <script type="text/javascript">
 
-            </script>
-            <tbody data-bind="foreach: records" class="">
-                <tr>
-                    <td class="align-middle" data-bind="text:Id"></td>
-                    <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:Sex"></td>
-                   
-                    <!-- <td class="align-middle" data-bind="text:Photo"></td>  data-bind="style: { background: 'url(' + ImageUrl + ') no-repeat center' }"-->
-                   
-                    <td class="align-middle pixa"
-                        data-bind="style: { background: 'url(' + Photo + ') no-repeat center' }">
-                    </td>
-                    
-                    
-                    <td class="align-middle" data-bind="text:BestPosition"></td>
-                    <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs"
-                            data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
-                            <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
-                        </a>
-                        <button class="btn btn-default btn-xs">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
-                                title="Selecione para adicionar aos favoritos"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            
+        
+                <tbody data-bind="foreach: records" class="">
+                    <tr>
+                        <td class="align-middle" data-bind="text:Id"></td>
+                        <td class="align-middle" data-bind="text:Name"></td>
+                        
+                        <td class="align-middle" data-bind="text:Modality"></td>
+                       
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -176,7 +156,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
-    <script src="athletes.js"></script>
+    <script src="competitions.js"></script>
 </body>
 
 </html>
