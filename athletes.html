@@ -23,7 +23,7 @@
         display:inline-table;
         }
     tr{
-        height: fit-content;
+        height:auto;
 
     }
 </style>
@@ -129,17 +129,17 @@
                     <!-- <td class="align-middle" data-bind="text:Photo"></td>  data-bind="style: { background: 'url(' + ImageUrl + ') no-repeat center' }"-->
                    
                     <td class="align-middle "
-                        data-bind="style: {background: 'url(' + Photo + ') no-repeat center' }">
+                        data-bind="style: {background: 'url(' + Photo + ') ' }">
                     </td>
                     
                     
                     <td class="align-middle" data-bind="text:BestPosition"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs"
+                        <a class="btn btn-default btn-light btn-ms"
                             data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
                             <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                         </a>
-                        <button class="btn btn-default btn-xs">
+                        <button class="btn btn-default btn-ms">
                             <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
                                 title="Selecione para adicionar aos favoritos"></i>
                         </button>

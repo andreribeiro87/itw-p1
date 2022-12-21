@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -25,8 +25,8 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i class="fa fa-trophy"></i> Competitions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link active text-success" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link active text-primary" aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
                 </ul>
             </div>
         </div>
@@ -38,33 +38,27 @@
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row border-bottom mx-0 my-1">
-            <div class="col-2">Game Id</div><div class="col-10" data-bind="text: Id"></div>
+            <div class="col-2">Game Id</div><div class="col-10" data-bind="text:Id"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
-        </div>
-        <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Country Name</div><div class="col-10" data-bind="text: CountryName"></div>
-        </div>
-        <div class="row border-bottom mx-0  my-1"><div class="col-2">Season</div>
-            <div class="col-10" data-bind="text: Season"></div>
-        </div>
-        <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Year</div><div class="col-10" data-bind="text: Year"></div>
-        </div>
-        <div class="row border-bottom mx-0  my-1" data-bind="visible: Logo() != '' && Logo() != null">
-            <div class="col-2">Logo</div><div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br /><i class="fa fa-link"></i><br />
-                [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]</div>
+            <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
         </div>
         <div class="row border-bottom mx-0  my-1" data-bind="visible: Photo() != '' && Photo() != null">
-            <div class="col-2">Photo</div><div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+            <div class="col-2">Photo</div><div class="small col-6">
+                <img class="img-thumbnail" data-bind="attr:{src: Photo}"> 
                 <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></a>]
             </div>
         </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">Modality</div><div class="col-10" data-bind="text:Modality"></div>
+        </div>
+        <div class="row border-bottom mx-0  my-1">
+            <div class="col-2">Results</div><div class="col-10" data-bind="text:Results"></div>
+        </div>
+
+
         <!-- /ko -->
-        <a href="./games.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+        <a href="./modalities.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
         <a data-bind="attr: { href:'./gameFull.html?id=' + Id() }" class="btn btn-default btn-sm small"><i class="fa fa-th"></i> Full Setails</a>
     </div>
     <!-- Modal -->
@@ -95,6 +89,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="gameDetails.js"></script>
+    <script src="modalitiesDetails.js"></script>
 </body>
 </html>
