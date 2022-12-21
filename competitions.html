@@ -123,6 +123,19 @@
                         <td class="align-middle" data-bind="text:Name"></td>
                         
                         <td class="align-middle" data-bind="text:Modality"></td>
+
+
+                        <td class="text-end">
+                            <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./competitionsDetails.html?id=' + Id }">
+                                <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                            </a>
+                            <button class="btn btn-default btn-xs">
+                                <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                            </button>
+                        </td>
+                    </td>
+                </tr>
+            </tbody>
                        
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

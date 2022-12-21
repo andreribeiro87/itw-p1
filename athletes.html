@@ -128,19 +128,14 @@
                         data-bind="style: {background: 'url(' + Photo + ') ' }">
                     </td>
                     
-                    
-                    <td class="align-middle" data-bind="text:BestPosition"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-ms"
-                            data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
                             <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                         </a>
-                        <button class="btn btn-default btn-ms">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
-                                title="Selecione para adicionar aos favoritos"></i>
+                        <button class="btn btn-default btn-xs">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
-                </tr>
             </tbody>
         </table>
     </div>

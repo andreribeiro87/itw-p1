@@ -96,7 +96,9 @@
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
                     <td class="align-middle" data-bind="text:IOC"></td>
-                    <td class="align-middle"> <img data-bind="attr:{src: Photo}" alt="pais" height="100px" width="200px"/></td> <!--da me erro aqui que e por as imagens invez de links se tirares isto o resto da-->
+                    <td>
+                    <img class="img-thumbnail" data-bind="attr:{src: Flag}"><br />
+                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Flag }, text : Flag" target="_blank"></td>]
                     
                   <!-- <td data-bind="foreach: Events"><span data-bind="text: Name"></span>   </td> 
                     <td class="align-middle" data-bind="text:Events.Id"></td>
