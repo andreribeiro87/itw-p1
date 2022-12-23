@@ -99,7 +99,14 @@
                     <td>
                     <img class="img-thumbnail" data-bind="attr:{src: Flag}"><br />
                 <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Flag }, text : Flag" target="_blank"></td>]
-                    
+                    <td class="text-end">
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
+                            <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                        </a>
+                        <button class="btn btn-default btn-xs">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                        </button>
+                    </td>
                   <!-- <td data-bind="foreach: Events"><span data-bind="text: Name"></span>   </td> 
                     <td class="align-middle" data-bind="text:Events.Id"></td>
                     <td class="align-middle" data-bind="text:Events.Name"></td>
