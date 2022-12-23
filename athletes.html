@@ -120,9 +120,9 @@
                    
                     <!-- <td class="align-middle" data-bind="text:Photo"></td>  data-bind="style: { background: 'url(' + ImageUrl + ') no-repeat center' }"-->
                    
-                    <td class="align-middle "
-                        data-bind="style: {background: 'url(' + Photo + ') ' }">
-                    </td>
+                    <td>
+                        <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+                    <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></td>]
                     
                     <td class="text-end">
                         <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
