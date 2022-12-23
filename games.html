@@ -77,6 +77,8 @@
             <th scope="col">Year</th>
             <th scope="col">City Name</th>
             <th scope="col">Country Name</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Photo</th>
             <th scope="col" class="text-right"></th>
         </tr>
     </thead>
@@ -88,8 +90,18 @@
             <td class="align-middle" data-bind="text:CityName"></td>
             <td class="align-middle" data-bind="text:CountryName"></td>
             <td class="text-end">
+            <td>
+                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br />
+             <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text : Logo" target="_blank"></td>]
+                        
+            <td>
+                    <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+             <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></td>]
+                
+                
+                
                 <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./gameDetails.html?id=' + Id }">
-                    <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                 </a>
                 <button class="btn btn-default btn-xs">
                     <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
