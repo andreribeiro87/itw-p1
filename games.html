@@ -82,6 +82,7 @@
             <th scope="col" class="text-right"></th>
         </tr>
     </thead>
+    <script type="text/javascript"></script>
     <tbody data-bind="foreach: records">
         <tr>
             <td class="align-middle" data-bind="text:Id"></td>
@@ -99,7 +100,7 @@
              <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></td>]
                 
                 
-                
+            <td class="text-end">    
                 <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./gameDetails.html?id=' + Id }">
                 <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                 </a>
