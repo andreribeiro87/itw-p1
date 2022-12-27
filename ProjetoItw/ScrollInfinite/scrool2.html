@@ -1,0 +1,277 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3E3XZ7RL7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Q3E3XZ7RL7');
+    </script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Sanchez:400italic,400);
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        body {
+            font-family: 'Sanchez', serif;
+            font-size: 12px;
+            background: #040E27;
+            color: #fff;
+            margin: 0 20px;
+
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 30px;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+
+        .container {
+            max-width: 768px;
+            margin: 2em auto;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quotes {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        blockquote {
+            margin-bottom: 25px;
+        }
+
+        .quote {
+            position: relative;
+            font-size: 20px;
+            line-height: 1.7em;
+            word-break: break-word;
+
+
+        }
+
+        .quote footer {
+            font-size: 0.6em;
+            font-weight: 700;
+            color: #d3d3cf;
+            text-align: right;
+        }
+
+        .quote footer:before {
+            content: '\2015';
+        }
+
+        .quote:after {
+            content: '\201D';
+            position: absolute;
+            top: 0.28em;
+            right: 0;
+            font-size: 6em;
+            font-style: italic;
+            color: #e7e6e4;
+            z-index: -1;
+        }
+
+        /* loader */
+
+        .loader {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+
+        }
+
+
+        .loader.show {
+            opacity: 1;
+        }
+
+        .loader div {
+            display: inline-block;
+            position: absolute;
+            left: 8px;
+            width: 16px;
+            background: #f4f4f4;
+            animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+        }
+
+        .loader div:nth-child(1) {
+            left: 8px;
+            animation-delay: -0.24s;
+        }
+
+        .loader div:nth-child(2) {
+            left: 32px;
+            animation-delay: -0.12s;
+        }
+
+        .loader div:nth-child(3) {
+            left: 56px;
+            animation-delay: 0;
+        }
+
+        @keyframes loader {
+            0% {
+                top: 8px;
+                height: 64px;
+            }
+
+            50%,
+            100% {
+                top: 24px;
+                height: 32px;
+            }
+        }
+    </style>>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Programming Quotes</h1>
+
+        <div class="quotes">
+        </div>
+
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <script>
+        debugger;
+        (function () {
+
+            const quotesEl = document.querySelector('.quotes');
+            const loaderEl = document.querySelector('.loader');
+
+            // get the quotes from API
+            const getQuotes = async (page, limit) => {
+                const API_URL = 'https://api.javascripttutorial.net/v1/quotes/?page=' + page + '&limit=' + limit;
+                // const API_URL = `https://api.javascripttutorial.net/v1/quotes/?page=${page}&limit=${limit}`;
+                const response = await fetch(API_URL);
+                // handle 404
+                if (!response.ok) {
+                    throw new Error(`An error occurred: ${response.status}`);
+                }
+                return await response.json();
+
+            }
+
+            // show the quotes
+            const showQuotes = (quotes) => {
+                quotes.forEach(quote => {
+                    const quoteEl = document.createElement('blockquote');
+                    quoteEl.classList.add('quote');
+
+                    quoteEl.innerHTML = `
+        <span>${quote.id})</span>
+        ${quote.quote}
+        <footer>${quote.author}</footer>
+    `;
+
+                    quotesEl.appendChild(quoteEl);
+                });
+            };
+
+            const hideLoader = () => {
+                loaderEl.classList.remove('show');
+            };
+
+            const showLoader = () => {
+                loaderEl.classList.add('show');
+            };
+
+            const hasMoreQuotes = (page, limit, total) => {
+                const startIndex = (page - 1) * limit + 1;
+                return total === 0 || startIndex < total;
+            };
+
+            // load quotes
+            const loadQuotes = async (page, limit) => {
+
+                // show the loader
+                showLoader();
+
+                // 0.5 second later
+                setTimeout(async () => {
+                    try {
+                        // if having more quotes to fetch
+                        if (hasMoreQuotes(page, limit, total)) {
+                            // call the API to get quotes
+                            const response = await getQuotes(page, limit);
+                            // show quotes
+                            showQuotes(response.data);
+                            // update the total
+                            total = response.total;
+                        }
+                    } catch (error) {
+                        console.log(error.message);
+                    } finally {
+                        hideLoader();
+                    }
+                }, 500);
+
+            };
+
+            // control variables
+            let currentPage = 1;
+            const limit = 10;
+            let total = 0;
+
+
+            window.addEventListener('scroll', () => {
+                const elem = document.getElementById('cota');
+                var scrollTop1 = document.body.scrollTop;
+                var scrollHeight1 = document.body.scrollHeight;
+                var clientHeight1 = document.body.clientHeight;
+                // console.log(scrollTop + scrollHeight, 'scrollTop + scrollHeight', clientHeight, 'clientHeight')
+                console.log(scrollTop1, 'scrollTop1', clientHeight1, 'clientHeight1')
+                // const clientHeight = document.documentElement.clientHeight; {
+                //     scrollTop,
+                //     scrollHeight,
+                //     clientHeight
+                // } = document.documentElement;
+
+                if (scrollTop1 + clientHeight1 >= scrollHeight1 - 1 &&
+                    hasMoreQuotes(currentPage, limit, total)) {
+                    currentPage++;
+                    console.log(currentPage)
+                    loadQuotes(currentPage, limit);
+                }
+            }, {
+                passive: true
+            });
+
+            // initialize
+            loadQuotes(currentPage, limit);
+
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div data-bind="foreach: collection">
+        <div>
+            <span data-bind="text: $index()"></span>
+            <span data-bind="text: $data"></span>
+        </div>
+    </div>
+    <div data-bind="scroll: collection().length < 160, scrollOptions: { loadFunc: addSome, offset: 10 }">loading</div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+
+    <script type="text/javascript">
+        ko.bindingHandlers.scroll = {
+
+            updating: true,
+
+            init: function (element, valueAccessor, allBindingsAccessor) {
+                var self = this
+                self.updating = true;
+                ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                    $(window).off("scroll.ko.scrollHandler")
+                    self.updating = false
+                });
+            },
+
+            update: function (element, valueAccessor, allBindingsAccessor) {
+                var props = allBindingsAccessor().scrollOptions
+                var offset = props.offset ? props.offset : "0"
+                var loadFunc = props.loadFunc
+                var load = ko.utils.unwrapObservable(valueAccessor());
+                var self = this;
+
+                if (load) {
+                    element.style.display = "";
+                    $(window).on("scroll.ko.scrollHandler", function () {
+                        if (($(document).height() - offset <= $(window).height() + $(window).scrollTop())) {
+                            if (self.updating) {
+                                loadFunc()
+                                self.updating = false;
+                            }
+                        }
+                        else {
+                            self.updating = true;
+                        }
+                    });
+                }
+                else {
+                    element.style.display = "none";
+                    $(window).off("scroll.ko.scrollHandler")
+                    self.updating = false
+                }
+            }
+        }
+
+        var viewModel = function () {
+            this.collection = ko.observableArray([])
+            var disney = ["Mickey", "Donald", "Daffy", "Hewie", "Dewie", "Lewie"]
+            var self = this;
+            this.addSome = function () {
+
+                for (var i = 0; i < 40; i++) {
+                    self.collection.push(disney[Math.floor((Math.random() * 6))])
+                }
+            }
+
+            this.addSome()
+
+        }
+
+
+        ko.applyBindings(new viewModel());
+
+
+    </script>
+</body>
+
+</html>
