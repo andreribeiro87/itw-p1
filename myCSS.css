@@ -6,20 +6,20 @@
 /* button default
 ---------------------------- */
 .btn-default {
-    color: #333;
-    background-color: #f8f9fa;
+    color: rgb(122, 90, 90);
+    background-color: #bebebe;
     border-color: #ccc;
 }
 
 .btn-default:focus {
-    color: #333;
+    color: rgb(255, 255, 255);
     background-color: #e6e6e6;
-    border-color: #8c8c8c;
+    border-color: #b8b8b8;
 }
 
 .btn-default:active,
 .btn-default:hover {
-    color: #333;
+    color: rgb(73, 73, 73);
     background-color: #e6e6e6;
     border-color: #adadad;
 }
@@ -38,10 +38,3 @@ li.page-item a {
     font-size: 0.85rem;
 }
 
-.pixa {
-    -webkit-clip-path: circle(75px at 50% 50%);
-    clip-path: circle(75px at 50% 50%);
-    background-color: none;
-    height: 1000px;
-    min-width: 100px;
-}

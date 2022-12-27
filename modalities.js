@@ -5,12 +5,12 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/Modalities');
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Olympic Games editions List';
+    self.displayName = 'Olympic Modalities List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
-    self.pagesize = ko.observable(2);
+    self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -60,6 +60,7 @@ var vm = function () {
             //self.SetFavourites();
         });
     };
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {

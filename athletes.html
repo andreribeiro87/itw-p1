@@ -11,17 +11,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="myCSS.css" />
 
 </head>
 <style>
-    td img{
-        width:50px;
-        height:50px;
-        }
+   
+    tr{
+        height:auto;
 
+    }
 </style>
 
 <body>
@@ -36,16 +36,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i
-                                class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i
-                                class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
-                                class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><i
-                                class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
-                                class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><img alt src="https://www.imagensanimadas.com/data/media/963/atleta-imagem-animada-0016.gif" width="25" height="25"> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><img alt src="https://thumbs.gfycat.com/AbsoluteLoneBasil.webp" width="25" height="25"> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><img alt src="https://static.wixstatic.com/media/79fa11_92da75138b884a2ba0cd5d59f764f3bf~mv2.gif" width="25" height="25"> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><img alt src="https://media0.giphy.com/media/cltM9sfMtuqdYGTknI/giphy.gif?cid=790b76114a33d1a7726a58d53fc198af40405ac87827d408&rid=giphy.gif&ct=s" width="25" height="25"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><img alt src="https://media4.giphy.com/media/4GXS63KAv32TE6YjUJ/giphy.gif?cid=790b7611552467f81d5c1787cda2d946e881089899173700&rid=giphy.gif&ct=s" width="25" height="25"></i> Modalities</a></li>
+                </ul>
                 </ul>
             </div>
         </div>
@@ -107,16 +103,16 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Year</th>
-                    <th scope="col">City Name</th>
-                    <th scope="col">Country Name</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Best Position</th>
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
             <script type="text/javascript">
 
             </script>
-            <tbody data-bind="foreach: records" class="">
+            <tbody data-bind="foreach: records" >
                 <tr>
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
@@ -124,20 +120,16 @@
                    
                     <!-- <td class="align-middle" data-bind="text:Photo"></td>  data-bind="style: { background: 'url(' + ImageUrl + ') no-repeat center' }"-->
                    
-                    <td class="align-middle pixa"
-                        data-bind="style: { background: 'url(' + Photo + ') no-repeat center' }">
-                    </td>
+                    <td>
+                        <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+                    <i class="fa fa-link"></i> <a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></td>]
                     
-                    
-                    <td class="align-middle" data-bind="text:BestPosition"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs"
-                            data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
                             <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                         </a>
                         <button class="btn btn-default btn-xs">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
-                                title="Selecione para adicionar aos favoritos"></i>
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>

@@ -12,7 +12,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="myCSS.css" />
 
 </head>
@@ -36,16 +36,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i
-                                class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i
-                                class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
-                                class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><i
-                                class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
-                                class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><img src="https://www.imagensanimadas.com/data/media/963/atleta-imagem-animada-0016.gif" width="25" height="25"> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><img src="https://thumbs.gfycat.com/AbsoluteLoneBasil.webp" width="25" height="25"> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><img src="https://static.wixstatic.com/media/79fa11_92da75138b884a2ba0cd5d59f764f3bf~mv2.gif" width="25" height="25"> countries</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><img src="https://media0.giphy.com/media/cltM9sfMtuqdYGTknI/giphy.gif?cid=790b76114a33d1a7726a58d53fc198af40405ac87827d408&rid=giphy.gif&ct=s" width="25" height="25"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><img src="https://media4.giphy.com/media/4GXS63KAv32TE6YjUJ/giphy.gif?cid=790b7611552467f81d5c1787cda2d946e881089899173700&rid=giphy.gif&ct=s" width="25" height="25"></i> Modalities</a></li>
                 </ul>
             </div>
         </div>
@@ -59,15 +54,15 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'countries: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'competitions: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './countries.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                     <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './countries.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
@@ -76,15 +71,15 @@
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
                     <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './countries.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                            data-bind="attr: { href: './competitions.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
                     </li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                     <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './countries.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + nextPage(), rel:'next' }">→</a></li>
                     <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './countries.html?page=' + totalPages() }">⇥</a></li>
+                            data-bind="attr: { href: './competitions.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -123,6 +118,23 @@
                         <td class="align-middle" data-bind="text:Name"></td>
                         
                         <td class="align-middle" data-bind="text:Modality"></td>
+                        <td>
+                        
+                            <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+                            <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text : Photo" target="_blank"></td>]
+        
+
+                        <td class="text-end">
+                            <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./competitionsDetails.html?id=' + Id }">
+                                <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                            </a>
+                            <button class="btn btn-default btn-xs">
+                                <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                            </button>
+                        </td>
+                    </td>
+                </tr>
+            </tbody>
                        
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
