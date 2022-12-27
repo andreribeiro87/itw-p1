@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="../images/Olympic_rings.svg"
-                    height="24" /></a>
+                    height="24" alt="rings"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -82,7 +82,7 @@
                             <div class="row col-12" data-bind="foreach:favAthletesData">
                                 <div class="col-3">
                                     <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
+                                        <img alt="favourite-athletes" class="img-fluid"
                                             data-bind="attr:{src: Photo != null ? Photo:'https://quimbarreiros.nqdigitalagency.pt/images/gallery/101_0128.JPG' }"
                                             class="card-img-top" alt="...">
                                         <div class="card-body text-center ">
@@ -110,7 +110,7 @@
                             <div class="row col-12" data-bind="foreach:favCompetitionsData">
                                 <div class="col-3">
                                     <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
+                                        <img alt="favourite-competions"class="img-fluid"
                                             data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
                                             class="card-img-top" alt="...">
                                         <div class="card-body text-center ">
@@ -140,7 +140,7 @@
                             <div class="row col-12" data-bind="foreach:favCountriesData">
                                 <div class="col-3">
                                     <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
+                                        <img alt="favourite-countries"class="img-fluid"
                                             data-bind="attr:{src: Flag != null ? Flag:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
                                             class="card-img-top" alt="...">
                                         <div class="card-body text-center ">
@@ -170,7 +170,7 @@
                             <div class="row col-12" data-bind="foreach:favModalitiesData">
                                 <div class="col-3">
                                     <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
+                                        <img alt="favourite-modalities "class="img-fluid"
                                             data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
                                             class="card-img-top" alt="...">
                                         <div class="card-body text-center ">
@@ -200,7 +200,7 @@
                             <div class="row col-12" data-bind="foreach:favGamesData">
                                 <div class="col-3">
                                     <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
+                                        <img alt="favourite-games"class="img-fluid"
                                             data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
                                             class="card-img-top" alt="...">
                                         <div class="card-body text-center ">
@@ -234,7 +234,7 @@
                 <div class="modal-content align-items-center">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            <img src="../images/Olympic_rings.svg" height="30" /> Loading data...
+                            <img alt="loading"src="../images/Olympic_rings.svg" height="30" /> Loading data...
                         </h5>
                     </div>
                     <!-- <div class="modal-body text-center">

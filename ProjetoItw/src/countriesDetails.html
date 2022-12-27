@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="../images/Olympic_rings.svg"
-                    height="24" /></a>
+                    height="24" alt="rings"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
         </div>
         <div class="row border-bottom mx-0  my-1">
             <div class="col-2">Flag</div>
-            <div class="col-10"><img class="img-thumbnail" data-bind="attr:{src: Flag}"></div>
+            <div class="col-10"><img class="img-thumbnail" data-bind="attr:{src: Flag}" alt="flag"></div>
         </div>
         <div class="row mx-0 my-1">
             <div class="col-2 ">Events</div>
@@ -77,7 +77,7 @@
                                     data-bind="text: Id"></span></li>
                             <li class="list-group-item"><span style="font-weight: 700;">Name </span><span
                                     data-bind="text: Name"></span></li>
-                            <li class="list-group-item"><span style="font-weight: 700;">Photo </span> <span><img
+                            <li class="list-group-item"><span style="font-weight: 700;">Photo </span> <span><img alt="photo"
                                         class="img-thumbnail"
                                         data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"></span>
                             </li>
@@ -136,7 +136,7 @@
         <div class="row border-bottom mx-0  my-1" data-bind="visible: Photo() != '' && Photo() != null">
             <div class="col-2">Photo</div>
             <div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
+                <img class="img-thumbnail" data-bind="attr:{src: Photo}" alt="photo"><br />
 
             </div>
         </div>
