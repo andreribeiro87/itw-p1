@@ -2,54 +2,181 @@
 <html lang="en">
 
 <head>
+   
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ITW - Olympics test App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
-    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/myCSS.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link href="https://unpkg.com/knockout@3.5.1/build/output/knockout-latest.js">
+
+    <link rel="stylesheet" href="myCSS.css" />
     <style>
+        #chart {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+
         .carousel {
             width: 100%;
             margin: 0 auto;
+          
         }
 
         .carousel-item {
             z-index: -100;
-            height: 800px;
+            height: 300px;
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size:contain;
+            
         }
 
         .carousel-item:nth-child(1) {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bc/Beijing_China_Beijing-National-Stadium-02.jpg');
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/qg4svfd30ecewbe5bgcq");
         }
 
         .carousel-item:nth-child(2) {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1b/Richmond_Olympic_Oval_front_view.jpg');
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/l1wpwz2va34y76tm8snw");
         }
 
         .carousel-item:nth-child(3) {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/34/Rio2016_julho_VilaAtletas_Barra_002_2659_-c-2016_GabrielHeusi_HeusiAction.jpg');
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/x5ojbqd2ppq83j5gqqa7');
         }
 
         .carousel-item:nth-child(4) {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/9d/New_national_stadium_tokyo_1.jpg');
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/vjehrd0smfdvl4zgpcb5');
         }
+
+        .carousel-item:nth-child(5) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/xcaarhuuknzyobighpam");
+        }
+
+        .carousel-item:nth-child(6) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/vr1ppksebtp1ckskc0mv");
+        }
+
+        .carousel-item:nth-child(7) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/hrtq7s827ibyx7xlfia1');
+        }
+
+        .carousel-item:nth-child(8) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/cop1qwavzmzhaenhve53');
+        }
+
+        .carousel-item:nth-child(9) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w440/primary/f84lziltsrmojperis4p");
+        }
+
+        .carousel-item:nth-child(10) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/lrdvjmz9mpeydgdmoeh4");
+        }
+
+        .carousel-item:nth-child(11) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/o17df3e5r3gvdtw5tjve');
+        }
+
+        .carousel-item:nth-child(12) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/ornt254we9za0ycrvhj2');
+        }
+        .carousel-item:nth-child(13) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/rbm95qf0udm5zbpokpre");
+        }
+
+        .carousel-item:nth-child(14) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/xvrknx6mcbq918u0lzh7");
+        }
+
+        .carousel-item:nth-child(15) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/f8zoy4ee7f6gfitzark3');
+        }
+
+        .carousel-item:nth-child(16) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/j6d5oevktvcaknm03neu');
+        }
+
+        .carousel-item:nth-child(17) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/ehvsyvzj9xy2doqpuyit");
+        }
+
+        .carousel-item:nth-child(18) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/a47ys6ijnwbgo9e98rtb");
+        }
+
+        .carousel-item:nth-child(19) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/hpqwpa6nq4igt0xkmxij');
+        }
+
+        .carousel-item:nth-child(20) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/hcuob2wkpsgbjj4dxhad');
+        }
+
+        .carousel-item:nth-child(21) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/cvmdlmsi6ismno6pbcoj");
+        }
+
+        .carousel-item:nth-child(22) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/g3eraqijcsk52g6rccvb');
+        }
+
+        .carousel-item:nth-child(23) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/paru9kupedy9jvmqiejb');
+        }
+
+        .carousel-item:nth-child(24) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/fcw7olxhvuieykn0xyej");
+        }
+
+        .carousel-item:nth-child(25) {
+            background-image: url("https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/cyjvduur5a1ttlc5rajd");
+        }
+
+        .carousel-item:nth-child(26) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/utp8z5rbcrcqcbcnfswh');
+        }
+
+        .carousel-item:nth-child(27) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_s_w288/primary/xcaxxu6eobvriavdhrb8');
+        }
+
+        .carousel-item:nth-child(28) {
+            background-image: url('https://img.olympicchannel.com/images/image/private/f_auto/t_1-1_600/primary/zp8irjlrzfu7s2jdault');
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="" height="24" /></a>
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img alt="rings"
+                    src="../images/Olympic_rings.svg" height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -57,105 +184,329 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="athletes.html"><i
-                                class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i
-                                class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
-                                class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="games.html"><i
-                                class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
-                                class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
-                                class="fa fa-star-o text-warning"></i> Favourites</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><img alt="athletes"src="https://www.imagensanimadas.com/data/media/963/atleta-imagem-animada-0016.gif" width="25" height="25"> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><img alt="competitions"src="https://thumbs.gfycat.com/AbsoluteLoneBasil.webp" width="25" height="25"> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><img alt="countries" src="https://static.wixstatic.com/media/79fa11_92da75138b884a2ba0cd5d59f764f3bf~mv2.gif" width="25" height="25"> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><img alt="games" src="https://media0.giphy.com/media/cltM9sfMtuqdYGTknI/giphy.gif?cid=790b76114a33d1a7726a58d53fc198af40405ac87827d408&rid=giphy.gif&ct=s" width="25" height="25"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><img alt="modalities" src="https://media4.giphy.com/media/4GXS63KAv32TE6YjUJ/giphy.gif?cid=790b7611552467f81d5c1787cda2d946e881089899173700&rid=giphy.gif&ct=s" width="25" height="25"></i> Modalities</a></li>
+
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><img alt="favourires" src="https://i.gifer.com/ZalX.gif" width="25" height="25">Favourites</a></li>
                 </ul>
-                <form class="d-flex" role="search" action="search.html" method="GET">
-                    <div class="input-group">
-                        <div class="ui-widget">
-                            <input id="searchAll" type="text" value="" name="SearchAll"
-                                class="form-control rounded-start rounded-0 " placeholder="Search All"
-                                aria-label="Search" aria-describedby="button-addon2">
-                        </div>
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
-                                class="fa fa-search"></i></button>
-                    </div>
-                </form>
             </div>
         </div>
     </nav>
     <!-- Working Area -->
-    <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" aria-label="Slide 1"
-                class="active" aria-current="true"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 3"></button>
+    <div class="container-fluid">
+        <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 1"
+                    class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6"
+                    aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="7"
+                    aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="8"
+                    aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="9"
+                    aria-label="Slide 8"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="10"
+                    aria-label="Slide 9"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="11"
+                    aria-label="Slide 10"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="12"
+                    aria-label="Slide 11"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="13"
+                    aria-label="Slide 12"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="14"
+                    aria-label="Slide 13"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="15"
+                    aria-label="Slide 14"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="16"
+                    aria-label="Slide 15"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="17"
+                    aria-label="Slide 16"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="18"
+                    aria-label="Slide 17"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="19"
+                    aria-label="Slide 18"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="20"
+                    aria-label="Slide 19"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="21"
+                    aria-label="Slide 20"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="22"
+                    aria-label="Slide 21"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="23"
+                    aria-label="Slide 22"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="24"
+                    aria-label="Slide 23"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="25"
+                    aria-label="Slide 24"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="26"
+                    aria-label="Slide 25"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="27"
+                    aria-label="Slide 26"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="28"
+                    aria-label="Slide 27"></button>
+                
+
+            </div>
+                <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Grenoble 1968</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Munique 1972</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Innsbruck 1976</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Montreal 1976</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Lake Placid 1980</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Moscou 1980</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Sarajevo 1984</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Los Angeles 1984</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Calgary 1988</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Seul 1988</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Albertville 1992</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Barcelona 1992</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-inner">
+                            
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Lillehamer 1994</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Atlanta 1996</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Nagano 1998</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Sydney 2000</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Salt Lake City 2002</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Atenas 2004</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Turim 2006</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Beijing 2008</div>
+
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Vancouver 2010</div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Rio de Janeiro 2016</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Tokio 2020</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">Beijing 2022</div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="carousel-caption d-none d-md-block">
+                                <div class="display-1">France 2024</div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+               
+            </div>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="display-1">Beijing 2008</div>
-                    <p>The 2008 Summer Olympics, officially the Games of the XXIX Olympiad and also known as Beijing
-                        2008, were an international multisport event held from 8 to 24 August 2008, in Beijing, China.
-                    </p>
+
+        
+<div class="row row-cols-5 row-cols-md-5 g-3 ">
+            <div class="col">
+              <div class="card h-100">
+                
+                <img src="https://www.supercoloring.com/sites/default/files/styles/coloring_medium/public/cif/2022/01/716-newspaper-coloring-page.png" class="card-img-top" alt="...">
+                    <h5 class="card-title">Notícias</h5>
+                     <p class="card-text"></p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="display-1">Vancouver 2010</div>
-                    <p>The 2010 Winter Olympics, officially known as the XXI Olympic Winter Games and also known as
-                        Vancouver 2010, were an international winter multi-sport event held from February 12 to 28, 2010
-                        in Vancouver, British Columbia, Canada, with some events held in the surrounding suburbs of
-                        Richmond, West Vancouver and the University of British Columbia, and in the nearby resort town
-                        of Whistler.</p>
+            <div class="col">
+                <div class="card h-100">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4MgmoQGLfQeUvaNetZphhnVfwvVsmPocZCzWHFSSzYzZfgvnXMnKce53-XnVY9ZSLrik&usqp=CAU" class="card-img-top" alt="..." >
+                
+                    <h5 class="card-title">Filmes</h5>
+                    <p class="card-text"></p>
+                </div>
+            </div>      
+            <div class="col">
+              <div class="card h-100">
+                
+                <img src="https://cdn.pixabay.com/photo/2017/01/31/20/40/calendar-2027122_960_720.png" class="card-img-top" alt="...">
+                    <h5 class="card-title">Eventos</h5>
+                     <p class="card-text"></p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="display-1">Rio de Janeiro 2016</div>
-                    <p>The 2016 Summer Olympics, officially the Games of the XXXI Olympiad and also known as Rio 2016,
-                        was an international multi-sport event held from 5 to 21 August 2016 in Rio de Janeiro, Brazil.
-                    </p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-caption d-none d-md-block">
-                    <div class="display-1">Tokio 2020</div>
-                    <p>The 2020 Summer Olympics, officially the Games of the XXXII Olympiad and also known as Tokyo
-                        2020, was an international multi-sport event held from 23 July to 8 August 2021 in Tokyo, Japan.
-                    </p>
-                </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS22gegjdY0sTHpdo2YsDIPFv7xNMJnlytFsg&usqp=CAU" class="card-img-top" alt="...">
+          
+            <h5 class="card-title">Sobre nós</h5>
+            <p class="card-text"></p>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+</div>
+    
+<br> 
+<h1>Tochas/Medalhas</h1>
+
+<div class="row row-cols-5 row-cols-md-5 g-3 ">
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://st.depositphotos.com/57803962/57318/v/600/depositphotos_573186922-stock-illustration-torch-web-icon-simple-illustration.jpg" class="card-img-top" alt="...">
+        
+          <h5 class="card-title">Tochas</h5>
+          <p class="card-text"></p>
+      </div>
     </div>
-    <!-- End of Working Area -->
-    <nav class="navbar navbar-light bg-light fixed-bottom">
-        <div class="container small">
-            <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
-                    href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-            <div class="navbar-nav">
-                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
-                </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="https://static.vecteezy.com/ti/vetor-gratis/p3/8143257-icone-medalha-aprovado-ou-certificado-azul-aprovado-ou-certificado-medalha-sinal-vetor.jpg" class="card-img-top" alt="..." >
+       
+          <h5 class="card-title">Medalhas</h5>
+          <p class="card-text"></p>
+        </div>
+        
+      </div>
+
+    </div>
+</div>
+
+<!-- End of Working Area -->
+<nav class="navbar navbar-light bg-light fixed-bottom">
+    <div class="container small">
+        <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
+        <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
+                href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+        <div class="navbar-nav">
+            <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
             </div>
         </div>
-    </nav>
-    <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../../lib/jquery/dist/jquery.min.js"></script>
-    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script src="../js/myScript.js"></script>
+    </div>
+</nav>
+<script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
+<script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
+
+<script src="../js/games.js"></script>
+
+
 </body>
 
 </html>
