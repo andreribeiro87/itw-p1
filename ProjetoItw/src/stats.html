@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITW 2022/23 - Olympic Games editions List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../lib/leaflet/dist/leaflet.css" rel="stylesheet" />
+    <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/myCSS.css" />
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="../images/Olympic_rings.svg"
+                    height="24" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="athletes.html"><i
+                                class="fa fa-user-o text-warning"></i> Athletes</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i
+                                class="fa fa-trophy"></i> Competitions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
+                                class=" fa fa-flag-o text-danger"></i> Countries</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="games.html"><i
+                                class="fa fa-map-marker text-success"></i> Games</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
+                                class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
+                                class="fa fa-star-o text-warning"></i> Favourites</a></li>
+                </ul>
+                <form class="d-flex" role="search" action="search.html" method="GET">
+                    <div class="input-group">
+                        <div class="ui-widget">
+                            <input id="searchAll" type="text" value="" name="SearchAll"
+                                class="form-control rounded-start rounded-0 " placeholder="Search All"
+                                aria-label="Search" aria-describedby="button-addon2">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Working Area -->
+    <div class="container">
+        <div class="mb-3 row justify-content-center">
+            <div class="col-3 ">
+                <div class="input-group">
+
+                    <div class="ui-widget col-8">
+                        <input id="searchCountrie" class="form-control border border-danger rounded-0" type="text"
+                            name="searchCountrie" value="" placeholder="Search by Countrie" aria-label="Search"
+                            aria-describedby="button-addon2">
+                    </div>
+                    <input type="button" value="Chart!" id="pila" class="col-3  btn btn-outline-danger">
+
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <canvas id="Chart2"></canvas>
+        </div>
+
+        <div id="map">
+
+        </div>
+
+    </div>
+    <!-- End of Working Area -->
+    <nav class="navbar navbar-light bg-light fixed-bottom">
+        <div class="container small">
+            <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2022/23</div>
+            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
+                    href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade
+                        de Aveiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script src="../../lib/leaflet/dist/leaflet.js"></script>
+    <script src="../../lib/node_modules/chart.js/dist/chart.umd.js"></script>
+    <script type="module" src="../../lib/node_modules/chart.js/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+
+    <script src=" ../js/stats.js"></script>
+    <!-- <script src="../js/favourite.js"></script> -->
+    <!-- <script src="../js/search.js"></script> -->
+    <script>
+
+        var map = L.map('map').setView([0, 0], 3);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+
+
+        let alfa = []
+        $.ajax({
+            type: "GET",
+            url: "http://192.168.160.58/Olympics/api/Games?page=1&pagesize=52",
+            success: function (data) {
+                var arr = data.Records
+                console.log(data.Records[0].CountryName, 'alfa')
+                for (let i = 0; i <= 52; i++) {
+                    gama1 = data.Records[i].CountryName
+                    gama2 = data.Records[i].Lat
+                    gama3 = data.Records[i].Lon
+                    beta = [gama1, gama2, gama3]
+                    alfa.push(beta)
+
+                    var marker = L.marker([gama2, gama3]).addTo(map);
+                }
+                console.log(alfa)
+
+                // marker.bindPopup('<h5>' + array[n].Name + array[n].IOC + '</h5>' + '<img src="' + array[n].Flag + '" style="width: 30vw; aspect-ratio: 1.98;">' + '<br>' + 'Id:' + array[n].Id).openPopup();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

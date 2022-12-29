@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/myCSS.css" />
 </head>
 
@@ -39,6 +41,17 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
                                 class="fa fa-star-o text-warning"></i> Modalities</a></li>
                 </ul>
+                <form class="d-flex" role="search" action="search.html" method="GET">
+                    <div class="input-group">
+                        <div class="ui-widget">
+                            <input id="searchAll" type="text" value="" name="SearchAll"
+                                class="form-control rounded-start rounded-0 " placeholder="Search All"
+                                aria-label="Search" aria-describedby="button-addon2">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>
@@ -57,27 +70,27 @@
             <div class="col-10" data-bind="text: Name"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Country Name</div>
+            <div class="col-2">Sex</div>
             <div class="col-10" data-bind="text: Sex"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Season</div>
+            <div class="col-2">Height</div>
             <div class="col-10" data-bind="text: Height"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Year</div>
+            <div class="col-2">Weight</div>
             <div class="col-10" data-bind="text: Weight"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Year</div>
+            <div class="col-2">Born Date</div>
             <div class="col-10" data-bind="text: BornDate"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Year</div>
+            <div class="col-2">Born Place</div>
             <div class="col-10" data-bind="text: BornPlace"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
-            <div class="col-2">Year</div>
+            <div class="col-2">Died Date</div>
             <div class="col-10" data-bind="text: DiedDate"></div>
         </div>
         <div class="row border-bottom mx-0  my-1">
@@ -93,10 +106,11 @@
                     target="_blank"></a>] -->
             </div>
         </div>
+
         <!-- /ko -->
         <a href="./athletes.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
-        <!-- <a data-bind="attr: { href:'./gameFull.html?id=' + Id() }" class="btn btn-default btn-sm small"><i
-                class="fa fa-th"></i> Full Setails</a> -->
+        <a data-bind="attr: { href:'./athletesFullDetails.html?id=' + Id() }" class="btn btn-default btn-sm small"><i
+                class="fa fa-th"></i> Full Details</a>
     </div>
 
 
@@ -151,6 +165,8 @@
     <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="../js/athletesDetails.js"></script>
 </body>
 

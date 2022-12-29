@@ -11,10 +11,49 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../../lib/jquery-ui/dist/themes/vader/jquery-ui.min.css" rel="stylesheet" />
-    <link href="../../lib/jquery-ui/dist/themes/vader/theme.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/myCSS.css" />
+    <style>
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            color: var(--bs-light) !important;
+        }
 
+        .ath.active {
+
+            background-color: var(--bs-warning) !important;
+
+        }
+
+        .comp.active {
+
+            background-color: var(--bs-gray) !important;
+
+        }
+
+        .coun.active {
+
+            background-color: var(--bs-danger) !important;
+
+        }
+
+        .gam.active {
+
+            background-color: var(--bs-success) !important;
+
+        }
+
+        .moda.active {
+
+            background-color: var(--bs-primary) !important;
+
+        }
+
+        .nav {
+            --bs-nav-link-color: var(--bs-dark) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,10 +81,11 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="favourites.html"><i
                                 class="fa fa-star-o text-warning"></i> Favourites</a></li>
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex" role="search" action="search.html" method="GET">
                     <div class="input-group">
                         <div class="ui-widget">
-                            <input id="searchAthlete" class="form-control" value="" placeholder="Search"
+                            <input id="searchAll" type="text" value="" name="SearchAll"
+                                class="form-control rounded-start rounded-0 " placeholder="Search All"
                                 aria-label="Search" aria-describedby="button-addon2">
                         </div>
                         <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
@@ -57,172 +97,165 @@
     </nav>
     <!-- Working Area -->
     <div class="container">
+        <div class="border-bottom py-2 mb-2">
+            <h2>Favourite </h2>
+        </div>
+        <!-- navtabs -->
+        <ul class=" nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link ath" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="false">Athletes</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link comp" id="pills-profile-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                    aria-selected="false">Competitions</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link coun" id="pills-contact-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Countries</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link gam" id="pills-disabled-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled"
+                    aria-selected="false">Games</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link moda" id="pills-more-tab" data-bs-toggle="pill" data-bs-target="#pills-more"
+                    type="button" role="tab" aria-controls="pills-more" aria-selected="false">Modalities</button>
+            </li>
+        </ul>
+        <!-- tabcontent -->
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <div class="row">
+                    <div class="row col-12" data-bind="foreach:favAthletesData">
+                        <div class="col-3">
+                            <div class="card mb-2 " style="width: 19.5rem;">
+                                <img class="img-fluid"
+                                    data-bind="attr:{src: Photo != null ? Photo:'https://quimbarreiros.nqdigitalagency.pt/images/gallery/101_0128.JPG' }"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center ">
+                                    <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
 
 
 
-
-
-
-
-
-
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne">
-                        Favorite Athletes
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                    aria-labelledby="panelsStayOpen-headingOne">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="row col-12" data-bind="foreach:favAthletesData">
-                                <div class="col-3">
-                                    <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
-                                            data-bind="attr:{src: Photo != null ? Photo:'https://quimbarreiros.nqdigitalagency.pt/images/gallery/101_0128.JPG' }"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body text-center ">
-                                            <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
-                                        </div>
-                                    </div>
+                                    <a class="btn btn-outline-dark justify-content-center col-2 mb-2 "
+                                        data-bind="attr: { href:'./AthletesDetails.html?id=' + Id }">
+                                        <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                                    </a>
                                 </div>
+                                <!-- add class active to the button if the athlete is in the favourites list -->
+                                <!-- <button class="btn btn-outline-danger " id="fav'+Athletes+'-btn"
+                                    data-bind="attr:{'id':'fav'+'Athletes'+'-btn'+Id} ,click: $parent.updatefavData.bind($data,Id,'fav'+'Athletes')">
+                                    <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
+                                        title="Selecione para adicionar aos favoritos"></i>
+                                </button> -->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo">
-                        Favourite Competitions
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="row col-12" data-bind="foreach:favCompetitionsData">
-                                <div class="col-3">
-                                    <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
-                                            data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body text-center ">
-                                            <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
-
-                                        </div>
-
-                                    </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="row col-12" data-bind="foreach:favCompetitionsData">
+                        <div class="col-3">
+                            <div class="card" style="width: 19.5rem;">
+                                <img class="img-fluid"
+                                    data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center ">
+                                    <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
+                                    <a class="btn btn-outline-dark justify-content-center col-2 mb-2 "
+                                        data-bind="attr: { href:'./CompetitionsDetails.html?id=' + Id }">
+                                        <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree">
-                        Favourite Countries
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingThree">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="row col-12" data-bind="foreach:favCountriesData">
-                                <div class="col-3">
-                                    <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
-                                            data-bind="attr:{src: Flag != null ? Flag:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body text-center ">
-                                            <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
-
-                                        </div>
-
-                                    </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="row col-12" data-bind="foreach:favCountriesData">
+                        <div class="col-3">
+                            <div class="card" style="width: 19.5rem;">
+                                <img class="img-fluid"
+                                    data-bind="attr:{src: Flag != null ? Flag:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center ">
+                                    <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
+                                    <a class="btn btn-outline-dark justify-content-center col-2 mb-2 "
+                                        data-bind="attr: { href:'./CountriesDetails.html?id=' + Id }">
+                                        <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseFour">
-                        Favourite Modalities
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingFour">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="row col-12" data-bind="foreach:favModalitiesData">
-                                <div class="col-3">
-                                    <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
-                                            data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body text-center ">
-                                            <h5 class="card-title fw-bold"><span data-bind="text: Name"></span></h5>
-
-                                        </div>
-
+            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
+                tabindex="0">
+                <div class="row">
+                    <div class="row col-12" data-bind="foreach:favGamesData">
+                        <div class="col-3">
+                            <div class="card" style="width: 19.5rem;">
+                                <img class="img-fluid"
+                                    data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center ">
+                                    <h5 class="card-title fw-bold"><span data-bind="text: Name"></span>
+                                        <span data-bind="text: CountryName"></span>
+                                    </h5>
+                                    <a class="btn btn-outline-dark justify-content-center col-2 mb-2 "
+                                        data-bind="attr: { href:'./GameDetails.html?id=' + Id }">
+                                        <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                                    </a>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class=""
+                                        style=" height: 25vh; width: 25vh; background-size: cover; background-position: center center;"
+                                        data-bind="style:{backgroundImage: 'url('+ Logo+')'}">
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseFive">
-                        Favourite Games
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingFive">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="row col-12" data-bind="foreach:favGamesData">
-                                <div class="col-3">
-                                    <div class="card" style="width: 19.5rem;">
-                                        <img class="img-fluid"
-                                            data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
-                                            class="card-img-top" alt="...">
-                                        <div class="card-body text-center ">
-                                            <h5 class="card-title fw-bold"><span data-bind="text: Name"></span>
-                                                <span data-bind="text: CountryName"></span>
-                                            </h5>
-                                            <div class="row justify-content-center">
-                                                <div class=""
-                                                    style=" height: 25vh; width: 25vh; background-size: cover; background-position: center center;"
-                                                    data-bind="style:{backgroundImage: 'url('+ Logo+')'}">
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="tab-pane fade" id="pills-more" role="tabpanel" aria-labelledby="pills-more-tab" tabindex="0">
+                <div class="row">
+                    <div class="row col-12" data-bind="foreach:favModalitiesData">
+                        <div class="col-3">
+                            <div class="card" style="width: 19.5rem;">
+                                <img class="img-fluid"
+                                    data-bind="attr:{src: Photo != null ? Photo:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Wilson_100_Tennis_Ball_on_Concrete.jpg/640px-Wilson_100_Tennis_Ball_on_Concrete.jpg' }"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center ">
+                                    <h5 class="card-title" data-bind="text:Name"></h5>
+                                    <a class="btn btn-outline-dark justify-content-center col-2 mb-2 "
+                                        data-bind="attr: { href:'./ModalitiesDetails.html?id=' + Id }">
+                                        <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
+                                    </a>
 
-                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
 

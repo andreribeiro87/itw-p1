@@ -30,11 +30,11 @@ $(document).ready(function () {
 
         //--- Page Events
         self.activate = function (id) {
-            debugger;
             console.log('CALL: getGames...');
             var composedUri = `http://192.168.160.58/Olympics/api/Athletes?page=${id}&pagesize=25`;
+            console.log(self.records(), 'records');
             if (window.location.search.includes("searchAthlete=")) {
-                composedUri = `http://192.168.160.58/Olympics/api/Athletes/SearchByName?q=${(window.location.search).replace("searchAthlete=", "")}`
+                composedUri = `http://192.168.160.58/Olympics/api/Athletes/SearchByName?q=${(window.location.search).replace("?searchAthlete=", "")}`
                 ajaxHelper(composedUri, 'GET').done(function (data) {
                     console.log(data);
                     hideLoading();
@@ -143,6 +143,45 @@ $(document).ready(function () {
             }
         };
         //
+        $('#searchAll').autocomplete({
+            // source: self.availableTags(),
+            max: 50,
+            minLength: 3,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Utils/Search?`,
+                        data: {
+                            q: $('#searchAll').val()
+                        },
+                        success: function (data) {
+
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results.slice(0, 20));
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+
+        });
         $('#searchAthlete').autocomplete({
             // source: self.availableTags(),
             max: 10,
@@ -181,6 +220,7 @@ $(document).ready(function () {
                     })
                 },
         });
+
 
         //-----END-SEARCH------//
 

@@ -55,21 +55,35 @@ $(document).ready(function () {
             console.log('CALL: getGames...');
             var composedUri = `http://192.168.160.58/Olympics/api/Modalities?page=${id}&pagesize=25`;
             // var composedUri = `http://192.168.160.58/Olympics/api/Athletes?page=5422&pagesize=25`;
-            ajaxHelper(composedUri, 'GET').done(function (data) {
-                console.log(data, 'DATA');
-                hideLoading();
-                (self.records).push(...data.Records);
-                self.currentPage(data.CurrentPage);
-                self.hasNext(data.HasNext);
-                self.hasPrevious(data.HasPrevious);
-                // self.pagesize(data.PageSize)
-                self.totalPages(data.TotalPages);
-                self.totalRecords(data.TotalRecords);
-                for (var i = 0; i < data.Records.length; i++) {
-                    self.checkButtons(data.Records[i].Id)
-                }
-                //self.SetFavourites();
-            });
+            if (window.location.search.includes("searchModalitie=")) {
+                composedUri = `http://192.168.160.58/Olympics/api/Modalities/SearchByName?q=${(window.location.search).replace("?searchModalitie=", "")}`
+                console.log(composedUri)
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data);
+                    hideLoading();
+                    self.records(data);
+                    for (var i = 0; i < data.length; i++) {
+                        self.checkButtons(data[i].Id)
+                    }
+                });
+            }
+            else {
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data, 'DATA');
+                    hideLoading();
+                    (self.records).push(...data.Records);
+                    self.currentPage(data.CurrentPage);
+                    self.hasNext(data.HasNext);
+                    self.hasPrevious(data.HasPrevious);
+                    // self.pagesize(data.PageSize)
+                    self.totalPages(data.TotalPages);
+                    self.totalRecords(data.TotalRecords);
+                    for (var i = 0; i < data.Records.length; i++) {
+                        self.checkButtons(data.Records[i].Id)
+                    }
+                    //self.SetFavourites();
+                });
+            }
             console.log(self.records())
         };
 
@@ -131,6 +145,83 @@ $(document).ready(function () {
                 }
             };
         }
+        $('#searchModalitie').autocomplete({
+            // source: self.availableTags(),
+            max: 10,
+            minLength: 3,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Modalities/SearchByName?`,
+                        data: {
+                            q: $('#searchModalitie').val()
+                        },
+                        success: function (data) {
+
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results);
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+        });
+        $('#searchAll').autocomplete({
+            // source: self.availableTags(),
+            max: 50,
+            minLength: 3,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Utils/Search?`,
+                        data: {
+                            q: $('#searchAll').val()
+                        },
+                        success: function (data) {
+
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results.slice(0, 20));
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+
+        });
 
         //--- start ....
         //---- images need to be loaded before the page is displayed-----
@@ -192,6 +283,7 @@ $(document).ready(function () {
 
 
         self.updateLocalStorage = (key, data) => {
+            console.log("updateLocalStorage", key, data)
             localStorage.setItem(key, JSON.stringify(data))
         }
 

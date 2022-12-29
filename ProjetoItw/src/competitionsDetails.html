@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/myCSS.css" />
     <style>
 
@@ -29,17 +31,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="athletes.html"><i
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="athletes.html"><i
                                 class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="competitions.html"><i
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="competitions.html"><i
                                 class="fa fa-trophy"></i> Competitions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
                                 class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="games.html"><i
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="games.html"><i
                                 class="fa fa-map-marker text-success"></i> Games</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
                                 class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
+                                class="fa fa-star-o text-warning"></i> Favourites</a></li>
                 </ul>
+                <form class="d-flex" role="search" action="search.html" method="GET">
+                    <div class="input-group">
+                        <div class="ui-widget">
+                            <input id="searchAll" type="text" value="" name="SearchAll"
+                                class="form-control rounded-start rounded-0 " placeholder="Search All"
+                                aria-label="Search" aria-describedby="button-addon2">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>
@@ -80,19 +95,17 @@
         <div class="row col-12 border-bottom mx-0  my-1" data-bind="foreach: Participant">
             <div class="col-3">
                 <div class="card mb-1">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="athletes.html"><i
-                                    class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="competitions.html"><i
-                                    class="fa fa-trophy"></i> Competitions</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="countries.html"><i
-                                    class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                        <li class="nav-item"><a class="nav-link " aria-current="page" href="games.html"><i
-                                    class="fa fa-map-marker text-success"></i> Games</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="modalities.html"><i
-                                    class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
-                                    class="fa fa-star-o text-warning"></i> Favourites</a></li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span style="font-weight: 700;">Id </span><span
+                                data-bind="text: Id"></span></li>
+                        <li class="list-group-item"><span style="font-weight: 700;">Name </span><span
+                                data-bind="text: Name"></span></li>
+                        <li class="list-group-item"><span style="font-weight: 700;">Year </span> <span
+                                data-bind="text: Year"></span></li>
+                        <li class="list-group-item"><span style="font-weight: 700;">City Name </span> <span
+                                data-bind="text: CityName"></span></li>
+                        <li class="list-group-item"><span style="font-weight: 700;">Country Name </span> <span
+                                data-bind="text: CountryName"></span></li>
                     </ul>
                 </div>
             </div>
@@ -163,6 +176,8 @@
     <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="../js/competitionDetails.js"></script>
 </body>
 

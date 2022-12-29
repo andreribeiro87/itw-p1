@@ -77,7 +77,45 @@ var vm = function () {
             }
         }
     };
+    $('#searchAll').autocomplete({
+        // source: self.availableTags(),
+        max: 50,
+        minLength: 3,
+        source:
+            function (request, response) {
+                $.ajax({
+                    type: "GET",
+                    url: `http://192.168.160.58/Olympics/api/Utils/Search?`,
+                    data: {
+                        q: $('#searchAll').val()
+                    },
+                    success: function (data) {
 
+                        if (!data.length) {
+                            var result = [{
+                                label: 'No matches found',
+                                value: response.term
+                            }];
+                            response(result);
+                        } else {
+
+                            var nData = $.map(data, function (value, key) {
+                                return {
+                                    label: value.Name,
+                                    value: value.Name
+                                }
+                            });
+                            results = $.ui.autocomplete.filter(nData, request.term);
+                            response(results.slice(0, 20));
+                        }
+                    },
+                    error: function () {
+                        alert("error!");
+                    }
+                })
+            },
+
+    });
     //--- start ....
     showLoading();
     var pg = getUrlParameter('id');

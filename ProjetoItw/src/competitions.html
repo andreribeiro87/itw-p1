@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/myCSS.css" />
 </head>
 
@@ -39,6 +41,17 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="favourites.html"><i
                                 class="fa fa-star-o text-warning"></i> Favourites</a></li>
                 </ul>
+                <form class="d-flex" role="search" action="search.html" method="GET">
+                    <div class="input-group">
+                        <div class="ui-widget">
+                            <input id="searchAll" type="text" value="" name="SearchAll"
+                                class="form-control rounded-start rounded-0 " placeholder="Search All"
+                                aria-label="Search" aria-describedby="button-addon2">
+                        </div>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>
@@ -47,6 +60,22 @@
         <div class="border-bottom py-2 mb-2">
             <h2 data-bind="text:displayName"></h2>
         </div>
+
+        <form class="mb-3 row justify-content-center" role="search" action="competitions.html" method="GET">
+            <div class="col-3 ">
+                <div class="input-group">
+                    <a href="competitions.html" class="col-2 btn border border-gray"><i
+                            class="fa fa-arrow-circle-left"></i></a>
+                    <div class="ui-widget col-8">
+                        <input id="searchCompetition" class="form-control border border-gray rounded-0" type="text"
+                            name="searchCompetition" value="" placeholder="Search by Competition" aria-label="Search"
+                            aria-describedby="button-addon2">
+                    </div>
+                    <button class="col-2  btn border border-gray" type="submit" id="button-addon2"><i
+                            class="fa fa-search "></i></button>
+                </div>
+            </div>
+        </form>
 
 
         <table class="table table-striped table-sm ">
@@ -70,12 +99,12 @@
                     <td class="align-middle" data-bind="text:Modality"></td>
                     <td class="align-middle" data-bind="text:Results"></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs"
+                        <a class="btn btn-outline-dark mb-2 "
                             data-bind="attr: { href:'./competitionsDetails.html?id=' + Id }">
                             <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
-                        </a>
+                        </a><br>
                         <!-- add class active to the button if the athlete is in the favourites list -->
-                        <button class="btn btn-outline-danger btn-xs" id="favCompetitions-btn"
+                        <button class="btn btn-outline-danger " id="favCompetitions-btn"
                             data-bind="attr:{'id':'favCompetitions-btn'+Id} ,click: $parent.updatefavData.bind($data,Id,'favCompetitions')">
                             <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }"
                                 title="Selecione para adicionar aos favoritos"></i>
@@ -115,6 +144,8 @@
     <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
     <script src="../js/competitions.js"></script>
 </body>
 

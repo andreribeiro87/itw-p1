@@ -49,21 +49,35 @@
         self.activate = function (id) {
             console.log('CALL: getGames...');
             var composedUri = `http://192.168.160.58/Olympics/api/Games?page=${id}&pagesize=30`
-            ajaxHelper(composedUri, 'GET').done(function (data) {
-                console.log(data);
-                hideLoading();
-                (self.records).push(...data.Records);
-                self.currentPage(data.CurrentPage);
-                self.hasNext(data.HasNext);
-                self.hasPrevious(data.HasPrevious);
-                // self.pagesize(data.PageSize)
-                self.totalPages(data.TotalPages);
-                self.totalRecords(data.TotalRecords);
-                for (var i = 0; i < data.Records.length; i++) {
-                    self.checkButtons(data.Records[i].Id)
-                }
-                //self.SetFavourites();
-            });
+            if (window.location.search.includes("searchGame=")) {
+                composedUri = `http://192.168.160.58/Olympics/api/Games/SearchByName?q=${(window.location.search).replace("?searchGame=", "")}`
+                console.log(composedUri)
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data);
+                    hideLoading();
+                    self.records(data);
+                    for (var i = 0; i < data.length; i++) {
+                        self.checkButtons(data[i].Id)
+                    }
+                });
+            }
+            else {
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data);
+                    hideLoading();
+                    (self.records).push(...data.Records);
+                    self.currentPage(data.CurrentPage);
+                    self.hasNext(data.HasNext);
+                    self.hasPrevious(data.HasPrevious);
+                    // self.pagesize(data.PageSize)
+                    self.totalPages(data.TotalPages);
+                    self.totalRecords(data.TotalRecords);
+                    for (var i = 0; i < data.Records.length; i++) {
+                        self.checkButtons(data.Records[i].Id)
+                    }
+                    //self.SetFavourites();
+                });
+            }
         };
 
         //--- Internal functions
@@ -114,7 +128,121 @@
                 }
             }
         };
+        $('#searchGame').autocomplete({
+            // source: self.availableTags(),
+            max: 10,
+            minLength: 3,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Games/SearchByName?`,
+                        data: {
+                            q: $('#searchGame').val()
+                        },
+                        success: function (data) {
 
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results);
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+        });
+        $('#searchAll').autocomplete({
+            // source: self.availableTags(),
+            max: 50,
+            minLength: 3,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Utils/Search?`,
+                        data: {
+                            q: $('#searchAll').val()
+                        },
+                        success: function (data) {
+
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results.slice(0, 20));
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+
+        });
+        $('#searchGames').autocomplete({
+            // source: self.availableTags(),
+            max: 10,
+            minLength: 4,
+            source:
+                function (request, response) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://192.168.160.58/Olympics/api/Games/SearchByName?`,
+                        data: {
+                            q: $('#searchAthlete').val()
+                        },
+                        success: function (data) {
+
+                            if (!data.length) {
+                                var result = [{
+                                    label: 'No matches found',
+                                    value: response.term
+                                }];
+                                response(result);
+                            } else {
+
+                                var nData = $.map(data, function (value, key) {
+                                    return {
+                                        label: value.Name,
+                                        value: value.Name
+                                    }
+                                });
+                                results = $.ui.autocomplete.filter(nData, request.term);
+                                response(results);
+                            }
+                        },
+                        error: function () {
+                            alert("error!");
+                        }
+                    })
+                },
+        });
         //--- start ....
         showLoading();
         self.activate(1);

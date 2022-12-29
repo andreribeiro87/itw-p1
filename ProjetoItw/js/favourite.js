@@ -85,7 +85,45 @@ var vm = function () {
 
 
 
+    $('#searchAll').autocomplete({
+        // source: self.availableTags(),
+        max: 50,
+        minLength: 3,
+        source:
+            function (request, response) {
+                $.ajax({
+                    type: "GET",
+                    url: `http://192.168.160.58/Olympics/api/Utils/Search?`,
+                    data: {
+                        q: $('#searchAll').val()
+                    },
+                    success: function (data) {
 
+                        if (!data.length) {
+                            var result = [{
+                                label: 'No matches found',
+                                value: response.term
+                            }];
+                            response(result);
+                        } else {
+
+                            var nData = $.map(data, function (value, key) {
+                                return {
+                                    label: value.Name,
+                                    value: value.Name
+                                }
+                            });
+                            results = $.ui.autocomplete.filter(nData, request.term);
+                            response(results.slice(0, 20));
+                        }
+                    },
+                    error: function () {
+                        alert("error!");
+                    }
+                })
+            },
+
+    });
 
 
 
@@ -96,7 +134,7 @@ var vm = function () {
 
 
 
-    //----------FAVORITOS-------------// 
+    //----------FAVORITOS-------------//
     console.log("ready!");
     self.favData = {
         "favAthletes": [],
@@ -175,7 +213,9 @@ var vm = function () {
     }
 
     self.checkButtons = function (id) {
+        // debugger
         for (let k in self.favData) {
+            console.log((self.favData[k].includes(String(id))), 'pilo')
             if (self.favData[k].includes(String(id))) {
                 $('#' + k + '-btn' + id).addClass("active")
             }
@@ -183,6 +223,7 @@ var vm = function () {
     }
 
     self.updatefavData = function (id, name) {
+        // debugger
         if (!$('#' + name + '-btn' + id).hasClass("active")) {
             //Adicionar à lista de favoritos
             if (!self.favData[name].includes(id))
@@ -215,6 +256,9 @@ var vm = function () {
                 self.favData[k] = []
             }
         }
+
+
+
         self.favAthletesData(self.getAllDataUsingId(self.favData.favAthletes, 'Athletes'));
         self.favCompetitionsData(self.getAllDataUsingId(self.favData.favCompetitions, 'Competitions'));
         self.favModalitiesData(self.getAllDataUsingId(self.favData.favModalities, 'Modalities'));
@@ -230,9 +274,21 @@ var vm = function () {
 
 
     self.start()
-    console.log(self.favData, 'init')
-    console.log(self.favCountriesData(), 'countries')
-    console.log(self.favAthletesData(), 'athletes')
+    $('#pills-home-tab').click(function () {
+        for (let j in self.favData) {
+            // debugger
+            console.log(self.favData[j], j)
+            for (var i = 0; i < self.favData[j].length; i++) {
+                console.log(self.favData[j][i], 'i')
+                self.checkButtons(self.favData[j][i])
+            }
+        }
+    })
+
+
+    // console.log(self.favData, 'init')
+    // console.log(self.favCountriesData(), 'countries')
+    // console.log(self.favAthletesData(), 'athletes')
 
 
 
