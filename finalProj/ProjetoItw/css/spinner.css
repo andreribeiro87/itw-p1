@@ -1,0 +1,148 @@
+@import "compass/css3";
+
+/***************************** COLORSET ***************************/
+/***************************** FONTSET ***************************/
+/***************************** STYLES ***************************/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.loader-container {
+    width: 92px;
+    height: 38px;
+    float: left;
+}
+
+
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spin {
+    from {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.olympicloader {
+    position: relative;
+}
+
+.olympicloader .loader-circle {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #000;
+    border-radius: 26px;
+    -webkit-animation: spin 200ms infinite linear;
+    -moz-animation: spin 200ms infinite linear;
+    -ms-animation: spin 200ms infinite linear;
+    -o-animation: spin 200ms infinite linear;
+    animation: spin 200ms infinite linear;
+    float: left;
+}
+
+.olympicloader .loader-circle.first {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 3px solid blue;
+    border-top-color: #fff;
+
+}
+
+.olympicloader .loader-circle.second {
+    position: absolute;
+    top: 0;
+    left: 32px;
+    border: 3px solid black;
+
+    border-right-color: #fff;
+}
+
+.olympicloader .loader-circle.third {
+    position: absolute;
+    top: 0;
+    left: 64px;
+    border: 3px solid red;
+
+    border-bottom-color: #fff;
+}
+
+.olympicloader .loader-circle.fourth {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    border: 3px solid yellow;
+
+    border-left-color: #fff;
+}
+
+.olympicloader .loader-circle.fifth {
+    position: absolute;
+    top: 10px;
+    left: 48px;
+    border: 3px solid green;
+
+    border-right-color: #fff;
+}

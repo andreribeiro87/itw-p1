@@ -1,0 +1,240 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"> -->
+    <!-- <link href="../../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- <link href="../../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" /> -->
+    <!-- <link href="../../lib/jquery-ui/dist/themes/base/jquery-ui.min.css" rel="stylesheet" /> -->
+    <!-- <link href="../../lib/jquery-ui/dist/themes/base/theme.css" rel="stylesheet" /> -->
+
+</head>
+
+<body>
+
+    <input class="ui-widget" autocomplete="off" id="date" type="date" id=""></p>
+    <input type="text" id="searchIdMap">
+    <input type="button" value="pila">
+    <canvas id="canvas"></canvas>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <div id="mapChart" style="width: 900px; height: 500px;"></div>
+    <script src="../../lib/jquery/dist/jquery.min.js"></script>
+
+
+    <!-- <script src="../../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script src="../../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="../../lib/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script src="../../lib/leaflet/dist/leaflet.js"></script>
+    <script src="../../lib/node_modules/chart.js/dist/chart.umd.js"></script>
+    <script type="module" src="../../lib/node_modules/chart.js/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-stacked100@1.0.0"></script>
+    <script src='https://unpkg.com/leaflet.repeatedmarkers@latest/Leaflet.RepeatedMarkers.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <script src="https://unpkg.com/chartjs-chart-geo@4"></script>
+    <script src="../js/index.umd.js"></script> -->
+    <!-- <script>
+        // fetch('https://unpkg.com/world-atlas/countries-50m.json')
+        //     .then((r) => r.json())
+        //     .then((data) => {
+        const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;
+        console.log(countries, 'pila');
+
+        const chart = new Chart(document.getElementById('canvas').getContext('2d'), {
+            type: 'choropleth',
+            data: {
+                labels: countries.map((d) => d.properties.name),
+                datasets: [
+                    {
+                        label: 'Countries',
+                        data: countries.map((d) => ({
+                            feature: d,
+                            value: Math.random(),
+                        })),
+                    },
+                ],
+            },
+            options: {
+                showOutline: true,
+                showGraticule: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    projection: {
+                        axis: 'x',
+                        projection: 'equalEarth',
+                    },
+                },
+            },
+        });
+            // });
+    </script> -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['geochart'],
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Popularity'],
+                ['Germany', 200],
+                ['United States', 300],
+                ['Brazil', 400],
+                ['Canada', 500],
+                ['France', 600],
+                ['RU', 700],
+                ['POR', 1000]
+            ]);
+
+            var options = {};
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+        }
+
+
+        google.load('current', {
+            'packages': ['geochart'],
+        });
+
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = new google.visualization.DataTable()
+            data.addColumn('string', 'Country')
+            data.addColumn('number', 'Number of Titles')
+            data.addColumn('number', 'Id')
+
+
+            var jsonData = $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "http://192.168.160.58/netflix/api/Countries?page=1&pagesize=200",
+                async: false
+            }).responseText;
+
+            var jsonData = JSON.parse(jsonData).Countries
+
+            var tableData = []
+
+            jsonData.forEach(element => {
+                var temp = []
+                temp[0] = element.Name
+                temp[1] = element.Titles
+                temp[2] = element.Id
+
+                tableData.push(temp)
+            });
+            data.addRows(tableData)
+            var options = {
+                width: 900,
+                height: 700,
+                colorAxis: {
+                    colors: ['#da2f37']
+                },
+                backgroundColor: {
+                    fill: 'transparent'
+                },
+                legend: 'none'
+            };
+            // Create and draw the visualization.
+            visualization = new google.visualization.GeoChart(document.getElementById('mapChart'));
+
+            google.visualization.events.addListener(visualization, 'select', function () {
+                try {
+                    var id = data.getValue(visualization.getSelection()[0].row, 2);
+                    t.mapSelect(id, 1, clearData = true)
+                } catch (error) {
+
+                }
+            });
+
+            visualization.draw(data, options);
+        }
+
+    </script>
+    <!-- <script type="text/javascript">
+
+        //get all ioc 
+
+
+
+        let iocList1 = [];
+        let iocList = {};
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.160.58/Olympics/api/Countries?page=1&pagesize=240',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                // console.log(data);
+                for (let i = 0; i < data.Records.length; i++) {
+                    iocList1.push(data.Records[i].IOC);
+                    iocList[data.Records[i].IOC] = data.Records[i].Name;
+                }
+            }
+        })
+        console.log(iocList);
+
+
+
+        let countryAthletes = {};
+        // debugger
+        for (let id = 48; id < 51; id++) {
+            // for (let ioc = 235; ioc < iocList1.length; ioc++) {
+            for (let ioc = 165; ioc < 166; ioc++) {
+                // console.log(iocList1);
+                var newIoc = iocList1[ioc].replace(/[('')]/g, '');
+                // console.log(newIoc);
+                // console.log(iocList1[ioc]);
+                //Get all atheletes by ioc code because 'api/Athletes/ByIOC?ioc={ioc}&page={page}&pagesize={pagesize}' don't return all atheletes with a for loop 
+                $.ajax({
+                    type: 'GET',
+                    url: `http://192.168.160.58/Olympics/api/Statistics/Athlete_Country?id=${id}&IOC=${newIoc}`,
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        // console.log(data);
+                        let afalecio = [];
+                        if (data.length != 0) {
+                            for (let i = 0; i < data.length; i++) {
+                                if (!countryAthletes[iocList[iocList1[ioc]]]) {
+                                    countryAthletes[iocList[iocList1[ioc]]] = [];
+                                }
+                                countryAthletes[iocList[iocList1[ioc]]].push(data[i].Name);
+                                console.log(countryAthletes.length);
+                                console.log(countryAthletes[iocList[iocList1[ioc]]], 'pilaaaaaaaaaaaaaa')
+
+                            }
+                            console.log(countryAthletes);
+                        }
+
+                        else {
+                            // console.log(data)
+                            // console.log('não tem');
+                        }
+
+
+
+                    }
+                })
+            }
+        }
+
+    </script> -->
+</body>
+
+</html>

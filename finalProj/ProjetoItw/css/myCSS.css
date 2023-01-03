@@ -1,0 +1,106 @@
+﻿body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 70px 0 60px 0;
+    overflow-y: visible;
+}
+
+/* button default
+---------------------------- */
+.btn-default {
+    color: #333;
+    background-color: #f8f9fa;
+    border-color: #ccc;
+}
+
+.btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
+
+.btn-default:active,
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+/* button-xs
+---------------------------- */
+.btn-group-xs>.btn,
+.btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+li.page-item a {
+    font-size: 0.85rem;
+}
+
+.roundPhoto {
+    clip-path: circle(75px at 50% 50%);
+    opacity: 0;
+    height: 1000px;
+    min-width: 100px;
+}
+
+tbody tr td:first-child {
+    margin: 15px;
+
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border: 0;
+}
+
+td {
+    border: 0;
+
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+tr {
+    border-spacing: 500px;
+    font-size: 22px;
+}
+
+thead tr th:last-child,
+tbody tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: 0;
+}
+
+document {
+
+    overflow: scroll;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

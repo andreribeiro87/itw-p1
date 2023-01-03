@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900');
+
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+
+
+a {
+    font-family: "Raleway", sans-serif;
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+
+
+
+
+#float-right {
+    float: right;
+}
+
+
+
+
+
+
+.rt-heading {
+    border-bottom: solid 1px #848484;
+    /* padding-bottom: 10px; */
+    display: table;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+.rt-row:before,
+.rt-row:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+
+.rt-row:after {
+    clear: both;
+}
+
+[class^="col-rt-"] {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding: 0 15px;
+    min-height: 1px;
+    position: relative;
+}
+
+
+@media (min-width: 768px) {
+    .rt-container {
+        width: 70vw;
+    }
+
+    [class^="col-rt-"] {
+        float: left;
+        width: 49.9999999999%;
+    }
+
+    .col-rt-6,
+    .col-rt-12 {
+        width: 100%;
+    }
+
+}
+
+/* @media (min-width: 1200px) {
+            .rt-container {
+                width: 1170px;
+            }
+
+            .col-rt-1 {
+                width: 16.6%;
+            }
+
+            .col-rt-2 {
+                width: 30.33%;
+            }
+
+            .col-rt-3 {
+                width: 50%;
+            }
+
+            .col-rt-4 {
+                width: 67.664%;
+            }
+
+            .col-rt-5 {
+                width: 83.33%;
+            }
+
+
+        } */
+
+
+
+
+
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+/* Effect 1: Brackets */
+
+.cc-rockmenu {
+    text-align: left;
+}
+
+.cc-rockmenu .rolling {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: left;
+    /* flex-direction: row; */
+    cursor: pointer;
+    width: 52px;
+    height: 52px;
+    text-align: left;
+    overflow: hidden;
+    border-radius: 26px;
+    transition: all 0.3s ease-out;
+    white-space: nowrap;
+}
+
+.cc-rockmenu .rolling.alfinha:hover {
+    width: 335px;
+}
+
+.cc-rockmenu .rolling:hover {
+    width: 160px;
+}
+
+.cc-rockmenu .rolling .rolling_icon {
+    float: left;
+    z-index: 9;
+    /* display: inline-block; */
+    width: 52px;
+    background: transparent;
+    height: 52px;
+    border-radius: 26px;
+    box-sizing: border-box;
+    /* margin: 0 10px 0 0; */
+}
+
+.cc-rockmenu .rolling.alfinha {
+    width: 335px;
+
+}
+
+.cc-rockmenu .rolling .rolling_icon.tam2 {
+    width: 80px;
+    height: 80px;
+    translate: -10px -10px;
+}
+
+.cc-rockmenu .rolling .rolling_icon.tamanho {
+    width: 66px;
+    height: 52px;
+    translate: -6.5px 0;
+
+
+}
+
+
+
+.cc-rockmenu .rolling .rolling_icon:hover .rolling {
+    width: 160px;
+}
+
+
+
+/* .cc-rockmenu .rolling i.fa {
+            font-size: 24px;
+            padding: 15px;
+        } */
+
+.cc-rockmenu .rolling span {
+    /* display: block; */
+    font-weight: bold;
+    /* padding: 4px 0; */
+    /* margin-left: 50px; */
+}
+
+.cc-rockmenu .rolling li {
+    display: inline-flex;
+    /* list-style: outside none none; */
+}
+
+.blue {
+    background-color: #69B0BB;
+
+}
+
+.red {
+    background-color: #EA6B65
+}
+
+.green {
+    background-color: #85BC94;
+}
+
+.yellow {
+    background-color: #F7BA61;
+}
+
+.black {
+    background-color: #62666A;
+}
+
+.cc-rockmenu .rolling.alfinha li a span {
+    margin-top: 6px;
+}
+
+.cc-rockmenu .rolling li a span {
+    margin-top: 16px;
+
+    text-decoration: none;
+}
+
+.cc-rockmenu .rolling li span:hover {
+    color: #fff;
+}
+
+
+
+.cc-rockmenu .rolling p {
+    margin: 0;
+}
+
+.nav-link {
+    display: flex;
+    padding: 0 !important;
+}
+
+.alfa:hover {
+    background: #e0e0e0 !important;
+
+
+
+}
+
+#searchAll {
+    width: 230px;
+}
+
+input#searchAll::placeholder {
+    margin-top: 100px;
+    color: white;
+
+
+}
+
+span>form>.input-group>#button-addon2 {
+    border: 0px;
+}
+
+input#searchAll {
+    margin-top: 2px;
+    border: 0;
+    background-color: #EA6B65;
+    color: white;
+
+
+}
+
+.navbar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EA6B65;
+
+
+}
+
+
+
+.ui-widget-content {
+    z-index: 99999;
+}

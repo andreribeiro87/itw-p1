@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chart.js": "^4.1.1",
+    "chartjs-chart-geo": "^4.1.1"
+  }
+}
